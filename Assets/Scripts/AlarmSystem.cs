@@ -14,22 +14,22 @@ public class AlarmSystem : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        AlarmOn();
+        TurnOnAlarm();
     }
 
     private void OnTriggerExit()
     {
-        AlarmOff();
+        TurnOfAlarm();
     }
 
-    private void AlarmOn()
+    private void TurnOnAlarm()
     {
         float maxVolume = 1;
 
         ChangeVolumeTo(maxVolume);
     }
 
-    private void AlarmOff()
+    private void TurnOfAlarm()
     {
         float minVolume = 0;
 

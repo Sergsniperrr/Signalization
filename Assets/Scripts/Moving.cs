@@ -7,19 +7,24 @@ public class Moving : MonoBehaviour
 
     private float _speed = 1.72f;
     private int _currentWaypointIndex;
+    private Animator CriminalAnimator;
 
-    private Animator CriminalAnimator => GetComponent<Animator>();
     private Waypoint CurrentWaypoint => _waypoints[_currentWaypointIndex];
+
+    private void Start()
+    {
+        CriminalAnimator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, NextWaypoint().transform.position, _speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, ReceiveNextWaypoint().transform.position, _speed * Time.deltaTime);
 
-        if (transform.position == NextWaypoint().transform.position && _currentWaypointIndex < _waypoints.Length - 1)
+        if (transform.position == ReceiveNextWaypoint().transform.position && _currentWaypointIndex < _waypoints.Length - 1)
             ChangeWaypoint();
     }
 
-    private Waypoint NextWaypoint()
+    private Waypoint ReceiveNextWaypoint()
     {
         Waypoint nextWaypoint;
 
@@ -35,7 +40,7 @@ public class Moving : MonoBehaviour
     {
         _currentWaypointIndex ++;
 
-        transform.LookAt(NextWaypoint().transform);
+        transform.LookAt(ReceiveNextWaypoint().transform);
 
         _speed = CurrentWaypoint.MoveSpeed;
 
