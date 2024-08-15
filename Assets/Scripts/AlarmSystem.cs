@@ -12,12 +12,12 @@ public class AlarmSystem : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
         TurnOnAlarm();
     }
 
-    private void OnTriggerExit()
+    private void OnTriggerExit(Collider other)
     {
         TurnOfAlarm();
     }
